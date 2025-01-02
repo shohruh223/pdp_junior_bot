@@ -3,7 +3,7 @@ from aiogram.filters import Command
 import asyncio
 from default_keyboard import main_menu, course_menu
 
-API_TOKEN = "6405919911:AAFzc45ERQNnnCI9hfb59gYkMFjjT8fRVUU"
+API_TOKEN = "7318028110:AAHkWO7TtHgI8iOquU1VTgMiDPajr_30fMQ"
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
 image_logo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz0fj6e2bltOwszWk-IbO4hLqPd8okt2zVrQ&s"
