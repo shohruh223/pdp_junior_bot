@@ -2,6 +2,12 @@ from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 import asyncio
 from default_keyboard import main_menu, course_menu
+from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
+from aiohttp import web
+import os
+
+WEBHOOK_PATH = "/webhook"
+WEBHOOK_URL = f"https://pdp-junior-bot.onrender.com{WEBHOOK_PATH}"
 
 API_TOKEN = "7318028110:AAHkWO7TtHgI8iOquU1VTgMiDPajr_30fMQ"
 bot = Bot(token=API_TOKEN)
@@ -96,7 +102,14 @@ Chorsu, Xadra, Zarqaynar 3-uy""",
 
 
 async def main():
-    await dp.start_polling(bot)
+    # Webhook URL'ni Telegram'da sozlash
+    await bot.set_webhook(WEBHOOK_URL)
+
+    # Aiohttp serverni ishga tushirish
+    app = web.Application()
+    SimpleRequestHandler(dp, bot).register(app, path=WEBHOOK_PATH)
+    setup_application(app, dp)
+    web.run_app(app, port=5000)
 
 if __name__ == "__main__":
     asyncio.run(main())
