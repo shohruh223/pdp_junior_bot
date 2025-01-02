@@ -34,7 +34,7 @@ address_image = "https://media.istockphoto.com/id/1409911141/vector/red-map-pin-
 @dp.message(Command("start"))
 async def menu_handler(message: types.Message):
     await message.answer_photo(photo=image_logo,
-                               caption="Assalamu alaykum PDP Junior botiga xush kelibsiz",
+                               caption="Assalamu alaykum PDP Junior botiga xush kelibsiz11",
                                reply_markup=main_menu())
 
 
