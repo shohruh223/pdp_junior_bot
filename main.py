@@ -1,9 +1,10 @@
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 import asyncio
+import aiohttp
 from default_keyboard import main_menu, course_menu
 
-API_TOKEN = "6405919911:AAFzc45ERQNnnCI9hfb59gYkMFjjT8fRVUU"
+API_TOKEN = "7318028110:AAHkWO7TtHgI8iOquU1VTgMiDPajr_30fMQ"
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
 image_logo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz0fj6e2bltOwszWk-IbO4hLqPd8okt2zVrQ&s"
@@ -95,7 +96,20 @@ Chorsu, Xadra, Zarqaynar 3-uy""",
                                reply_markup=main_menu())
 
 
+async def keep_awake():
+    while True:
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get("https://pdp-junior-bot.onrender.com") as response:
+                    print("Ping yuborildi:", response.status)
+        except Exception as e:
+            print("Pingda xato:", e)
+        await asyncio.sleep(300)  # Har 5 daqiqada ping qiladi
+
+
 async def main():
+    # Ping qilish uchun task
+    asyncio.create_task(keep_awake())
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
